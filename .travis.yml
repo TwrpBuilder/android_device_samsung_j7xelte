@@ -32,3 +32,7 @@ deploy:
     tags: false
     repo: TwrpBuilder/device_samsung_j7xelte
     branch: mm6.0
+
+branches:
+  except:
+    - /^(?i:untagged)-.*$/

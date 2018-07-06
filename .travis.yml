@@ -2,10 +2,10 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker pull surendrajat/twrp-builder:latest
+  - docker pull yshalsager/lineageos:14.1
 before_script:
 - cd $HOME && mkdir twrp
-- wget -q https://github.com/TwrpBuilder/twrp-sources/releases/download/omni_twrp-6.0.1-20180220/omni_twrp-6.0.1-20180220-norepo.tar.xz
+- wget -q https://github.com/TwrpBuilder/twrp-sources/releases/download/omni_twrp-7.1.2-20180326-norepo/omni_twrp-7.1.2-20180326-norepo.tar.xz
   -O $HOME/twrp.tar.xz
 - tar -xJf twrp.tar.xz --directory $HOME/twrp/ && rm twrp.tar.xz
 script:
@@ -13,9 +13,9 @@ script:
   - git clone https://github.com/TwrpBuilder/device_generic_twrpbuilder.git device/generic/twrpbuilder
   - rm -rf bootable/recovery && git clone https://github.com/omnirom/android_bootable_recovery.git bootable/recovery
   - |
-    docker run --rm -i -v "$(pwd):/root/twrp/:rw,z" surendrajat/twrp-builder bash << EOF
-    cd /root/twrp/
-    source build/envsetup.sh && lunch omni_j7xelte-userdebug && make -j16 recoveryimage
+    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/twrp/:rw,z" yshalsager/lineageos:14.1 bash << EOF
+    cd /home/twrp/
+    source build/envsetup.sh && lunch omni_j7xelte-eng && make -j16 recoveryimage
     exit
     EOF
 after_success:

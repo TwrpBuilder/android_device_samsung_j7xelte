@@ -9,7 +9,7 @@ before_script:
   -O $HOME/twrp.tar.xz
 - tar -xJf twrp.tar.xz --directory $HOME/twrp/ && rm twrp.tar.xz
 script:
-  - cd $HOME/twrp/ && git clone https://github.com/TwrpBuilder/device_samsung_j7xelte.git device/samsung/j7xelte
+  - cd $HOME/twrp/ && git clone https://github.com/TwrpBuilder/android_device_samsung_j7xelte.git device/samsung/j7xelte
   - git clone https://github.com/TwrpBuilder/device_generic_twrpbuilder.git device/generic/twrpbuilder
   - rm -rf bootable/recovery && git clone https://github.com/omnirom/android_bootable_recovery.git bootable/recovery
   - |
@@ -30,5 +30,5 @@ deploy:
   file: $HOME/twrp/*.img
   on:
     tags: false
-    repo: TwrpBuilder/device_samsung_j7xelte
+    repo: TwrpBuilder/android_device_samsung_j7xelte
     branch: mm6.0

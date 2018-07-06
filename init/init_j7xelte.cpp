@@ -37,7 +37,7 @@ void vendor_load_properties()
 {
 	char bootloader[PROP_VALUE_MAX];
 
-	property_get("ro.bootloader", bootloader);
+	__system_property_get("ro.bootloader", bootloader);
 
 	if (strstr(bootloader, "J710FN")) {
 		/* India */

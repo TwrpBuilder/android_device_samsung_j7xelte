@@ -51,7 +51,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_SUPPRESS_SECURE_ERASE := true
-BOARD_CUSTOM_BOOTIMG_MK :=  device/samsung/j7xelte/bootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK :=  device/samsung/j7xelte/bootimg.mk
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -84,3 +84,8 @@ TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_j7xelte
 TARGET_RECOVERY_DEVICE_MODULES := libinit_j7xelte
 TARGET_LIBINIT_DEFINES_FILE := device/samsung/j7xelte/init/init_j7xelte.cpp
+
+
+ifdef TARGET_PREBUILT_DTB
+	BOARD_MKBOOTIMG_ARGS += --dt $(TARGET_PREBUILT_DTB)
+endif
